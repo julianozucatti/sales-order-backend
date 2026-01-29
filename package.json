@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "-": "^0.0.1",
     "@sap/cds": "^9",
-    "express": "^4"
+    "D": "^1.0.0",
+    "express": "^4",
+    "git-commit-msg-linter": "^5.0.8"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "dev": "cds watch"
   },
   "private": true
 }
