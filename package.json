@@ -10,11 +10,15 @@
     "git-commit-msg-linter": "^5.0.8"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2"
+    "@cap-js/cds-typer": "^0.38.0",
+    "@cap-js/sqlite": "^2",
+    "@types/node": "^25.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "start": "cds-serve",
-    "dev": "cds watch"
+    "dev": "DEBUG=db cds-tsx watch"
   },
   "private": true
 }
