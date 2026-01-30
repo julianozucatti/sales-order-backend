@@ -1,0 +1,37 @@
+### GET all products
+GET http://localhost:4004/odata/v4/main/Products
+Content-Type: application/json
+
+###
+
+### GET product by ID
+GET http://localhost:4004/odata/v4/main/Products(ID=uuid'00000000-0000-0000-0000-000000000001')
+Content-Type: application/json
+
+###
+
+### CREATE product
+POST http://localhost:4004/odata/v4/main/Products
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "price": 1299.99
+}
+
+###
+
+### UPDATE product
+PATCH http://localhost:4004/odata/v4/main/Products(ID=uuid'00000000-0000-0000-0000-000000000001')
+Content-Type: application/json
+
+{
+  "name": "Gaming Laptop",
+  "price": 1499.99
+}
+
+###
+
+### DELETE product
+DELETE http://localhost:4004/odata/v4/main/Products(ID=uuid'00000000-0000-0000-0000-000000000001')
+Content-Type: application/json

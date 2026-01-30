@@ -5,6 +5,30 @@ Content-Type: application/json
 POST http://localhost:4004/odata/v4/main/SalesOrderHeaders
 Content-Type: application/json
 
-{}
+{
+  "id": "e0719d12-c009-419a-8a51-c6feecfec0b2",
+  "customer_id": "05ff7f4a-9ffd-4347-a08f-ebf00ef1ea5c",
+  "totalAmount": 250.75,
+  "items": [
+    {
+      "id":"d99c381f-12f3-413e-8bd1-23d9b27b2589",
+      "header_id": "e0719d12-c009-419a-8a51-c6feecfec0b2",  
+      "product_id": "8c5ae09f-ef1d-4c36-8c39-af7cbae125da",
+      "quantity": 2,
+      "price": 50.25
+    },
+    {
+      "id":"69adde39-49e8-44e1-90cf-b4a098e4585c",
+      "header_id": "e0719d12-c009-419a-8a51-c6feecfec0b2",   
+      "product_id": "f4a217cc-a3f9-4a25-a8fa-68c8255bf935",
+      "quantity": 3,
+      "price": 50.08
+    }
+  ]
+}
+###
 
+GET http://localhost:4004/odata/v4/main/SalesOrderHeaders?$filter=id eq 'e0719d12-c009-419a-8a51-c6feecfec0b2'&$expand=items
+Content-Type: application/json
+###
 

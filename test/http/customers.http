@@ -1,0 +1,40 @@
+### GET all customers
+GET http://localhost:4004/odata/v4/main/Customers
+Content-Type: application/json
+
+###
+
+### GET customer by ID
+GET http://localhost:4004/odata/v4/main/Customers(id='b5b5088d-7fc0-44d1-b5f6-181db1b03995')
+Content-Type: application/json
+
+###
+
+### CREATE customer
+POST http://localhost:4004/odata/v4/main/Customers
+Content-Type: application/json
+
+{
+  "id": "05ff7f4a-9ffd-4347-a08f-ebf00ef1ea5c", 
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com"
+}
+
+###
+
+### UPDATE customer
+PATCH http://localhost:4004/odata/v4/main/Customers(ID=uuid'00000000-0000-0000-0000-000000000001')
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com"
+}
+
+###
+
+### DELETE customer
+DELETE http://localhost:4004/odata/v4/main/Customers(ID=uuid'00000000-0000-0000-0000-000000000001')
+Content-Type: application/json
