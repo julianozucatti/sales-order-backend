@@ -12,6 +12,11 @@
   resolved "https://registry.yarnpkg.com/@cap-js/cds-typer/-/cds-typer-0.38.0.tgz#34b418416f0606e59c9c10bdf991ab5d262e2fbf"
   integrity sha512-X/AAF3A02pNjxDQOpf+om0S+L1MWyFanz9/aQYwYvjUaaU/Tkx26ruziZ2MDbwVrAJ5iA6bSFYs6LP5/+oMdNQ==
 
+"@cap-js/cds-types@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@cap-js/cds-types/-/cds-types-0.15.0.tgz#fe12b03fe8586a0993c8e18d1afe38ee08533e3c"
+  integrity sha512-Bi0uQnzpCzBw2KHzFuMzobt0mvMG3as3bfVvRJAc8ooRuoVMyr3Y0iRVjmmoyOeE2ezG6EiF+Xp22QpJ7J+z+Q==
+
 "@cap-js/db-service@^2.8.1":
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/@cap-js/db-service/-/db-service-2.8.1.tgz#e552543e9cd13c26b92b0214c111dc974e065ec6"
