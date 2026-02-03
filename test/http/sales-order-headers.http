@@ -13,15 +13,15 @@ Content-Type: application/json
     {
       "id":"d99c381f-12f3-413e-8bd1-23d9b27b2589",
       "header_id": "e0719d12-c009-419a-8a51-c6feecfec0b2",  
-      "product_id": "78760448-b72a-4f37-8242-7558e21901c0",
-      "quantity": 2,
+      "product_id": "28780603-ea65-48ca-8c62-f5c32ebf3f04",
+      "quantity": 10,
       "price": 50.25
     },
     {
       "id":"69adde39-49e8-44e1-90cf-b4a098e4585c",
       "header_id": "e0719d12-c009-419a-8a51-c6feecfec0b2",   
-      "product_id": "28780603-ea65-48ca-8c62-f5c32ebf3f05",
-      "quantity": 3,
+      "product_id": "28780603-ea65-48ca-8c62-f5c32ebf3f04",
+      "quantity": 10,
       "price": 50.08
     }
   ]
