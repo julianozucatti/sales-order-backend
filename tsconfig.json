@@ -8,6 +8,7 @@
     "strictNullChecks": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
+     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./",
     "baseUrl": "./",
@@ -15,6 +16,6 @@
       "@models/*": ["./@cds-models/*/index.ts"]
     }
   },
-  "include": ["srv"],
+  "include": ["srv", "types"],
   "exclude": ["node_modules"]
 }
