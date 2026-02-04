@@ -65,6 +65,12 @@ export default (service: Service) => {
         items.forEach((item => {
             totalAmount += (item.price as number) * (item.quantity as number);
         }));
+        
+        if(totalAmount > 3000){
+            const discount = totalAmount * 0.1;
+            totalAmount = totalAmount - discount;
+        }
+
         request.data.totalAmount = totalAmount;
     });
 
@@ -84,6 +90,16 @@ export default (service: Service) => {
                 foundProduct.stock = (foundProduct.stock as number) - productData.quantity;
                 await cds.run(UPDATE('sales.Products').set(foundProduct).where({ id: foundProduct.id }));
             }
+            
+            const headerAsString = JSON.stringify(header);
+            const userAsString = JSON.stringify(results._user);
+            const log = [{
+                header_id: header.id,
+                userData: userAsString,
+                orderData: headerAsString
+            }];
+            await cds.create('sales.SalesOrderLogs').entries(log);
+        
         }
 
     });

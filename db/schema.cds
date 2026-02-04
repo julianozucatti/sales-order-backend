@@ -7,7 +7,8 @@ entity SalesOrderHeaders : managed {
     key id          : UUID;
         customer    : Association to Customers;
         totalAmount : Decimal(15, 2);
-        items: Composition of many SalesOrderItems on items.header = $self;
+        items       : Composition of many SalesOrderItems
+                          on items.header = $self;
 }
 
 entity SalesOrderItems {
@@ -17,6 +18,14 @@ entity SalesOrderItems {
         quantity : Integer;
         price    : Decimal(15, 2);
 }
+
+entity SalesOrderLogs {
+    key id        : UUID;
+        header    : Association to SalesOrderHeaders;
+        userData  : LargeString;
+        orderData : LargeString;
+}
+
 
 entity Customers {
     key id        : UUID;
