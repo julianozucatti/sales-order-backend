@@ -1,5 +1,6 @@
 import cds, { Request, service, Service } from "@sap/cds";
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderItem, SalesOrderItems } from "@models/sales";
+import { log } from "node:console";
 
 export default (service: Service) => {
 
@@ -25,6 +26,7 @@ export default (service: Service) => {
 
     service.before("CREATE", 'SalesOrderHeaders', async (request: Request) => {
         const param = request.data;
+        const items: SalesOrderItems = param.items;
         if (!param.customer_id) {
             return request.reject(400, "customer_id is required");
         }
@@ -57,6 +59,13 @@ export default (service: Service) => {
                 return request.reject(400, `products ${item.product_id} - ${product.name} are out of stock`);
             }
         }
+        console.log(param);
+        
+        let totalAmount = 0;
+        items.forEach((item => {
+            totalAmount += (item.price as number) * (item.quantity as number);
+        }));
+        request.data.totalAmount = totalAmount;
     });
 
     service.after("CREATE", 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {

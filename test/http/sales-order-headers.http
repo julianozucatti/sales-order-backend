@@ -4,6 +4,7 @@ Content-Type: application/json
 
 POST http://localhost:4004/odata/v4/main/SalesOrderHeaders
 Content-Type: application/json
+Authorization: Basic devuser:devpass
 
 {
   "id": "e0719d12-c009-419a-8a51-c6feecfec0b2",
