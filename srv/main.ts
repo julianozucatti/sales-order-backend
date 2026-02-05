@@ -1,27 +1,25 @@
 import cds, { Request, service, Service } from "@sap/cds";
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderItem, SalesOrderItems } from "@models/sales";
 import { log } from "node:console";
+import { CustomerServiceImpl } from "./services/customer/implementation";
+import { FullRequestParams } from "./protocols";
 
 export default (service: Service) => {
 
     service.before('READ', '*', (request: Request) => {
-        if(!request.user?.is("read_only_user")) {
+        if (!request.user?.is("read_only_user")) {
             request.reject(403, "Não autorizado");
         }
     });
 
-    service.before(['WRITE','DELETE'], '*', (request: Request) => {
-        if(!request.user?.is("admin")) {
+    service.before(['WRITE', 'DELETE'], '*', (request: Request) => {
+        if (!request.user?.is("admin")) {
             request.reject(403, "Não autorizado escrita e deleção");
         }
     });
 
-    service.after("READ", 'Customers', (results: Customers) => {
-        results.forEach(customer => {
-            if (!customer.email?.includes("@")) {
-                customer.email = `${customer.email}@hotmail.com`;
-            }
-        })
+    service.after("READ", 'Customers', (customerList: Customers, request) => {
+        (request as unknown as FullRequestParams<Customers>).results = new CustomerServiceImpl().afterRead(customerList);
     });
 
     service.before("CREATE", 'SalesOrderHeaders', async (request: Request) => {
@@ -60,13 +58,13 @@ export default (service: Service) => {
             }
         }
         console.log(param);
-        
+
         let totalAmount = 0;
         items.forEach((item => {
             totalAmount += (item.price as number) * (item.quantity as number);
         }));
-        
-        if(totalAmount > 3000){
+
+        if (totalAmount > 3000) {
             const discount = totalAmount * 0.1;
             totalAmount = totalAmount - discount;
         }
@@ -74,7 +72,7 @@ export default (service: Service) => {
         request.data.totalAmount = totalAmount;
     });
 
-    service.after("CREATE", 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {
+    service.after("CREATE", 'SalesOrderHeaders', async (results: SalesOrderHeaders, request: Request) => {
         const headerAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;
         for (const header of headerAsArray) {
             const items = header.items as SalesOrderItems;
@@ -90,16 +88,16 @@ export default (service: Service) => {
                 foundProduct.stock = (foundProduct.stock as number) - productData.quantity;
                 await cds.run(UPDATE('sales.Products').set(foundProduct).where({ id: foundProduct.id }));
             }
-            
+
             const headerAsString = JSON.stringify(header);
-            const userAsString = JSON.stringify(results._user);
+            const userAsString = JSON.stringify(request.user);
             const log = [{
                 header_id: header.id,
                 userData: userAsString,
                 orderData: headerAsString
             }];
-            await cds.create('sales.SalesOrderLogs').entries(log);
-        
+            await cds.create('sales.Sales').entries(log);
+
         }
 
     });
